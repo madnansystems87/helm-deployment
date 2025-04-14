@@ -2,9 +2,9 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ include "java-web-app.fullname" . }}
+  name: {{ include "springboot-web-app.fullname" . }}
   labels:
-    {{- include "java-web-app.labels" . | nindent 4 }}
+    {{- include "springboot-web-app.labels" . | nindent 4 }}
   {{- with .Values.ingress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
@@ -35,7 +35,7 @@ spec:
             {{- end }}
             backend:
               service:
-                name: {{ include "java-web-app.fullname" $ }}
+                name: {{ include "springboot-web-app.fullname" $ }}
                 port:
                   number: {{ $.Values.service.port }}
           {{- end }}

@@ -2,14 +2,14 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "java-web-app.fullname" . }}
+  name: {{ include "springboot-web-app.fullname" . }}
   labels:
-    {{- include "java-web-app.labels" . | nindent 4 }}
+    {{- include "springboot-web-app.labels" . | nindent 4 }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "java-web-app.fullname" . }}
+    name: {{ include "springboot-web-app.fullname" . }}
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:

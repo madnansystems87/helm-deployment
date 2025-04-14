@@ -1,7 +1,7 @@
 {{/*
     Expand the name of the chart.
     */}}
-    {{- define "java-web-app.name" -}}
+    {{- define "springboot-web-app.name" -}}
     {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
     {{- end }}
     
@@ -10,7 +10,7 @@
     We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
     If release name contains chart name it will be used as a full name.
     */}}
-    {{- define "java-web-app.fullname" -}}
+    {{- define "springboot-web-app.fullname" -}}
     {{- if .Values.fullnameOverride }}
     {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
     {{- else }}
@@ -26,16 +26,16 @@
     {{/*
     Create chart name and version as used by the chart label.
     */}}
-    {{- define "java-web-app.chart" -}}
+    {{- define "springboot-web-app.chart" -}}
     {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
     {{- end }}
     
     {{/*
     Common labels
     */}}
-    {{- define "java-web-app.labels" -}}
-    helm.sh/chart: {{ include "java-web-app.chart" . }}
-    {{ include "java-web-app.selectorLabels" . }}
+    {{- define "springboot-web-app.labels" -}}
+    helm.sh/chart: {{ include "springboot-web-app.chart" . }}
+    {{ include "springboot-web-app.selectorLabels" . }}
     {{- if .Chart.AppVersion }}
     app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
     {{- end }}
@@ -45,17 +45,17 @@
     {{/*
     Selector labels
     */}}
-    {{- define "java-web-app.selectorLabels" -}}
-    app.kubernetes.io/name: {{ include "java-web-app.name" . }}
+    {{- define "springboot-web-app.selectorLabels" -}}
+    app.kubernetes.io/name: {{ include "springboot-web-app.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     {{- end }}
     
     {{/*
     Create the name of the service account to use
     */}}
-    {{- define "java-web-app.serviceAccountName" -}}
+    {{- define "springboot-web-app.serviceAccountName" -}}
     {{- if .Values.serviceAccount.create }}
-    {{- default (include "java-web-app.fullname" .) .Values.serviceAccount.name }}
+    {{- default (include "springboot-web-app.fullname" .) .Values.serviceAccount.name }}
     {{- else }}
     {{- default "default" .Values.serviceAccount.name }}
     {{- end }}
