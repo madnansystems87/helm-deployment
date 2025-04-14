@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: {{ include "springboot-web-app.fullname" . }}
   labels:
-{{ include "springboot-web-app.labels" . | nindent 4 }}
+  {{- include "springboot-web-app.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
