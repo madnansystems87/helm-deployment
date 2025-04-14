@@ -1,9 +1,9 @@
-# Default values for java-web-app.
+# Default values for springboot-app.
 
 replicaCount: 2
 
 image:
-  repository: 211125460769.dkr.ecr.us-east-1.amazonaws.com/java-web-app
+  repository: 195361087056.dkr.ecr.us-east-1.amazonaws.com/java-web-app
   pullPolicy: Always
   tag: latest
 
@@ -33,18 +33,18 @@ service:
 
 ingress:
   enabled: true
-  className: "nginx" # Use either `className` or the annotation, not both
+  className: "nginx" 
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
   hosts:
-    - host: java-web-app.example.com
+    - host: springboot-app.example.com
       paths:
         - path: /
           pathType: Prefix
   tls:
-    - secretName: java-web-app-tls
+    - secretName: springboot-app-tls
       hosts:
-        - java-web-app.example.com
+        - springboot-app.example.com
 
 
 autoscaling:
